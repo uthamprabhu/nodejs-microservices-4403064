@@ -1,5 +1,5 @@
 // Testing the catalog-service - make sure to update the port
-@catalog-service-port = 56800
+@catalog-service-port = 56444
 
 ##
 GET http://localhost:{{catalog-service-port}}/items
@@ -24,13 +24,21 @@ content-type: application/json
 // Updating an existing item
 ###
 # @prompt item-id
+# @prompt new-name
 # @prompt new-price
 PUT http://localhost:{{catalog-service-port}}/items/{{item-id}}
 content-type: application/json
 
 {
+    "name": "{{new-name}}",
     "price": {{new-price}}
 }
+
+// Delete an existing item
+###
+# @prompt item-id
+
+DELETE http://localhost:{{catalog-service-port}}/items/{{item-id}}
 
 
 // Registering services
